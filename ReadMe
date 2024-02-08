@@ -17,7 +17,8 @@ To clone specific branch from this git
      //get the relative path by copying the path of the folder in github
   4. git checkout
 
-//For master only
+//This is here just in case I forget the commands.
+//For master
 To update folders in CSE031
   1. git add.
   2. git commit -m "commit message"
