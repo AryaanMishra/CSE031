@@ -1,6 +1,9 @@
 //For Clone
 To Clone specific branch from this git
-  1. git clone --depth 1 --no-checkout https://github.com/AryaanMishra/CSE031.git
+  1. open terminal
+  2. cd to ur CSE lab folder
+  3. git init
+  3. git clone --depth 1 --no-checkout https://github.com/AryaanMishra/CSE031.git
   2. cd CSE031
   3. git sparse-checkout set [INSERT_DESIRED_SUBDIRECTORY_RELATIVE-PATH] 
      //get the relative path by copying the path of the folder in github
@@ -8,4 +11,6 @@ To Clone specific branch from this git
 
 //For master only
 To update folders in CSE031
-  1.
+  1. git add.
+  2. git commit -m "commit message"
+  3. git push -u origin master
