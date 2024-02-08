@@ -2,7 +2,7 @@
 To Clone specific branch from this git
   1. git clone --depth 1 --no-checkout https://github.com/AryaanMishra/CSE031.git
   2. cd CSE031
-  3. git sparse-checkout set [INSERT_DESIRED_SUBDIRECTORY_RELATIVE-PATH]
+  3. git sparse-checkout set [INSERT_DESIRED_SUBDIRECTORY_RELATIVE-PATH] //get the relative path by copying the path of the folder in github
   4. git checkout
 
 //For master only
