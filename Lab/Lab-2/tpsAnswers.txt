@@ -30,7 +30,7 @@ TPS 2:
 
 TPS 3:
 
-	1. Five variables are declared: x, y, px, py, and arr. px and py are int pointers.
+	1. Five variables are declared: x, y, px and py in the first line. px and py are int pointers.
 	2. The values of x, y, and arr[0] are undefined if you run the program without initializing these variables. 
 	   They could be any value that was previously stored at those memory locations. You can insert printf statements to display their values like so:
 	   'printf("x: %d, y: %d, arr[0]: %d\n", x, y, arr[0]);'
