@@ -1,7 +1,13 @@
 You can ignore the .vscode branch
 
 //For Cloning
-To Clone specific branch from this git
+To clone the entire repo
+  1. open terminal
+  2. cd to ur CSE folder
+  3. git init
+  3. git clone https://github.com/AryaanMishra/CSE031.git
+
+To clone specific branch from this git
   1. open terminal
   2. cd to ur CSE folder
   3. git init
