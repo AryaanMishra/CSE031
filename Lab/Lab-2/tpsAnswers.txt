@@ -7,6 +7,16 @@ TPS 1:
 		2. https://www.gdbtutorial.com/
 		3. https://linuxconfig.org/gdb-debugging-tutorial-for-beginners
 
+	    Chandrahas:
+		1. https://www.sourceware.org/gdb/
+		2. https://cs.brown.edu/courses/cs033/docs/guides/gdb.pdf
+		3. https://www.cs.cmu.edu/~gilpin/tutorial/
+
+	    Parthib
+		1. https://rpg.hamsterrepublic.com/ohrrpgce/GDB_on_Windows 
+		2. https://code.visualstudio.com/docs/cpp/cpp-debug 
+		3. https://www.tutorialspoint.com/gnu_debugger/installing_gdb.htm
+
 TPS 2:
 
 	1. 'gcc -g punishment.c -o punish'
