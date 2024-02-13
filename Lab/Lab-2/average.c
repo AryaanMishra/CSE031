@@ -13,8 +13,8 @@
 */
 
 int read_values(double *sum) { //2nd bug [replace 'sum' with '*sum']
-
-    int values = 0, input = 0;
+    int values = 0; 
+    int input = 0;
     *sum = 0;
     printf("Enter input values (enter 0 to finish):\n");
     scanf("%d", &input); //1st bug [replace 'scanf("%d, input);' with 'scanf("%d, &input);']
@@ -39,6 +39,6 @@ int main() {
     //updated here
     // AFTER read_values() manipulates it?
     // Make sure to use GDB or LLDB for this.
-    
+
     return 0;
 }
