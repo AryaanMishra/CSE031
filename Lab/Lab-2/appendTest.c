@@ -30,6 +30,8 @@ int main() {
 char str1[10];
 char str2[10];
 while (1) {
+memset(str1, 0, sizeof(str1));
+memset(str2, 0, sizeof(str2));
 printf("str1 = ");
 scanf("%[^\n]%*c", str1);
 // if (!gets(str1)) return 0;

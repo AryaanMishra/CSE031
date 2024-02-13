@@ -11,22 +11,22 @@
 * you wish.
 * Use GDB or LLDB to discover and fix errors.
 */
-int read_values(double sum) {
+int read_values(double *sum) { //2nd bug [replace 'sum' with '*sum']
 int values = 0, input = 0;
-sum = 0;
+*sum = 0;
 printf("Enter input values (enter 0 to finish):\n");
-scanf("%d", &input);
+scanf("%d", &input); //1st bug [replace 'scanf("%d, input);' with 'scanf("%d, &input);']
 while(input != 0) {
 values++;
-sum += input;
-scanf("%d", input);
+*sum += input; 
+scanf("%d", &input);
 }
 return values;
 }
 int main() {
 double sum = 0;
 int values;
-values = read_values(sum);
+values = read_values(&sum);
 printf("\nAverage: %g\n", sum/values); // Hint: How do we ensure that sum is
 //updated here
 // AFTER read_values() manipulates it?

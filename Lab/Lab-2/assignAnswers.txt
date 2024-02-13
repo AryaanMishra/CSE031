@@ -1,0 +1,10 @@
+Assignment 1:
+
+	1. The segmentation error is caused by line 18, 'scanf("%d, input);'. "input" is an int while it should have been a pointer instead.
+	2. To fix the segmentation fault, we have to change 'scanf("%d, input);' to 'scanf("%d, &input);'
+    3. As the "sum" parameter for the read_value function is a double, any changes made to it doesn't affect the sum variable in the main function. Therefore, the sum always remains zero.
+    4. To fix this issue, we have to change the parameter of the read_value function, from sum to a pointer to sum instead. 
+
+Assignment 2:
+    
+    1.
