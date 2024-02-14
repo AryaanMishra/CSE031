@@ -19,7 +19,7 @@ int read_values(double *sum) { //2nd bug [replace 'sum' with '*sum']
     printf("Enter input values (enter 0 to finish):\n");
     scanf("%d", &input); //1st bug [replace 'scanf("%d, input);' with 'scanf("%d, &input);']
 
-    while(input != 0) {
+    while(input != 0){
         values++;
         *sum += input; 
         scanf("%d", &input);

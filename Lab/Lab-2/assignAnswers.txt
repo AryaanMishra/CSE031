@@ -7,4 +7,6 @@ Assignment 1:
 
 Assignment 2:
     
-    1.
+    1. No, the output is not expected as there are some unexpected characters in the output, "HELLO!hello!@." 
+    2. No, this output is not expected either, "HI!hi!hello!@." This time the strings has the output from the last output and additional characters from memory.To fix these issue, we have to add a null terminator in the append function, this takes care of the unexpected characters being printed from memory.
+    3. No, it's not the expected output, "thank you!I am fine, thank you!|." This happens because the program limits the size of str1 and str2 to only 10 characters, entering longer strings lead to a buffer overflow. For the buffer overflow issue, we simply have to allocate more meory size to str1 and str2.
