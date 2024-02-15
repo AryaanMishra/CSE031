@@ -1,4 +1,4 @@
-Araan Mishra
+Aryaan Mishra
 
 TPS 1:
     1.  - static: global variable and constants, permanent for the entire run of the program.
@@ -62,7 +62,7 @@ TPS 1:
             +-----+
     
 TPS 2:
-    1. This program contains a structure 'Node' which has an int 'iValue', a float 'fValue' and a pointer to a node, which is defined here, 'next'. It also has a main function where the memory for a node 'head' is dynamically allocated, using "malloc" and the values for 'iValue' and 'fValue' is defined, for the 'head'.
+    1. 	This program contains a structure 'Node' which has an int 'iValue', a float 'fValue' and a pointer to a node, which is defined here, 'next'. It also has a main function where the memory for a node 'head' is dynamically allocated, using "malloc" and the values for 'iValue' and 'fValue' is defined, for the 	'head'.
     
     2. 
         printf("Value of head: %p\n", head);
