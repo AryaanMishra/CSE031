@@ -1,0 +1,79 @@
+Araan Mishra
+
+TPS 1:
+    1.  - static: global variable and constants, permanent for the entire run of the program.
+        - stack: local variable. It is automatically alloocated and are continuous memory.The stack is used to store variables used on the inside of a function . It’s a LIFO, “Last-In,-First-Out”, structure. In this variables are allocated and freed automatically.
+        - heap: dynamic storage, such as objects and data structures. It is not allocated in contiguous order. Managed manually (allocated and deallocated explicitly by the programmer). Memory must be explicitly freed to avoid memory leaks. The heap requires pointers to access it. 
+
+    2.  a) In the program 3 variables are declared, 'num' is an integer variable, 'ptr' and 'handle' are pointer variables.
+        b) The program has 2 pointer variables: 'ptr' and 'handle'. 'ptr' points to an int array while 'handle' is pointing to an int pointer.
+        c) 'num' is stored in the stack while 'ptr' and 'handle' are pointers and are allocated dynamically, thus are stored in the heap.
+        d) 'ptr' is tored in the heap so in line 12, it will point to a memory block in the heap.
+
+    3.  Address of num: 0x7fffbf98a0dc, Value: 14
+        Address of ptr: 0x563ac3cdd260, Value: 0x563ac3cdd270
+        Address of handle: 0x7fffbf98a0d0, Value: 0x563ac3cdd260
+
+        Stack:
+            +-----+
+            | num |
+            +-----+
+
+        Heap:
+            +-------+    +-------+
+            | ptr   |    | handle|
+            |   |   |    |   |   |
+            |   v   |    |   v   |
+            +---+---+    +---+---+
+                |            |
+                v            v
+            +--+--+      +--+--+
+            |num  |      |ptr  |
+            +-----+      +-----+
+    
+    4.  Address of num: 0x7fffbf98a0dc, Value: 14
+        Address of ptr: 0x563ac3cdd260, Value: 0x563ac3cdd270
+        Address of handle: 0x7fffbf98a0d0, Value: 0x563ac3cdd260
+
+        Stack:
+            +-----+
+            | num |
+            +-----+
+
+        Heap:
+            +-------+    +-------+
+            | ptr   |    | handle|
+            |   |   |    |   |   |
+            |   v   |    |   v   |
+            +---+---+    +---+---+
+                |            |
+                v            v
+            +--+--+      +--+--+
+            |num  |      |ptr  |
+            +-----+      +-----+
+                |            |
+                v            |
+            +--+--+          |
+            |     |          |
+            +-----+          |
+                             |
+            +--+--+          |
+            |handle|---------+
+            +-----+
+    
+TPS 2:
+    1. This program contains a structure 'Node' which has an int 'iValue', a float 'fValue' and a pointer to a node, which is defined here, 'next'. It also has a main function where the memory for a node 'head' is dynamically allocated, using "malloc" and the values for 'iValue' and 'fValue' is defined, for the 'head'.
+    
+    2. 
+        printf("Value of head: %p\n", head);
+        printf("Address of head: %p\n", &head);
+        printf("Value of iValue: %d\n", head->iValue);
+        printf("Address of iValue: %p\n", &head->iValue);
+        printf("Value of fValue: %f\n", head->fValue);
+        printf("Address of fValue: %p\n", &head->fValue);
+        printf("Value of next: %p\n", (void*)head->next);
+        printf("Address next: %p\n", &head->next);
+    
+    3.  The above code demonstrates the basic usage of structures, memory allocation, and printing memory addresses in C. The 'head' pointer contains the address of the dynamically allocated memory for the Node structure. The address of 'head' will be the starting address of this memory block.
+        The 'iValue' and 'fValue' are stored at consecutive locations in the allocated memory block.
+        The 'next' pointer points to the address where the 'next' Node structure would be stored if a linked list were to be formed.

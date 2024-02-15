@@ -14,7 +14,14 @@ int main() {
     head->fValue = 3.14;
 	
 	// Insert code here
-	
-	
+    printf("Value of head: %p\n", head);
+    printf("Address of head: %p\n", &head);
+    printf("Value of iValue: %d\n", head->iValue);
+    printf("Address of iValue: %p\n", &head->iValue);
+    printf("Value of fValue: %f\n", head->fValue);
+    printf("Address of fValue: %p\n", &head->fValue);
+    printf("Value of next: %p\n", (void*)head->next);
+    printf("Address next: %p\n", &head->next);
+
 	return 0;
 }
