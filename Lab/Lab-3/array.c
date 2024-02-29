@@ -1,3 +1,6 @@
+// The size of the array is for the function to know the range of elements. C doesn't have a way to determine the size of an array automatically.
+//No, the original array is not changed. The function creates a new array (s_arr) and performs sorting operations on this new array. 
+//The sorting algorithm used in the function modifies the order of elements in the array. Updating the original array directly while sorting could lead to unintended consequences
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,18 +16,27 @@ int* bubbleSort(int arr[], int n) {
 
     // Sorting using array notations
 	// Comment this when implementing pointer version.
-    for (i = 0; i < n - 1; i++) {
-        for(j = 0; j < n - 1; j++) {
-            if(s_arr[j] > s_arr[j + 1]) {
-                temp = s_arr[j + 1];
-                s_arr[j + 1] = s_arr[j];
-                s_arr[j] = temp;
-            }
-        }
-    }
+    // for (i = 0; i < n - 1; i++) {
+    //     for(j = 0; j < n - 1; j++) {
+    //         if(s_arr[j] > s_arr[j + 1]) {
+    //             temp = s_arr[j + 1];
+    //             s_arr[j + 1] = s_arr[j];
+    //             s_arr[j] = temp;
+    //         }
+    //     }
+    // }
 
     // Sorting using pointer notations. i.e. you cannot use "[]"!
     // Your code goes here...
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - 1 - i; j++) { 
+            if (*(s_arr + j) > *(s_arr + j + 1)) {
+                temp = *(s_arr + j + 1);
+                *(s_arr + j + 1) = *(s_arr + j);
+                *(s_arr + j) = temp;
+            }
+        }
+    }
 
 
 
@@ -44,6 +56,26 @@ int bSearch(int *arr, int a, int b, int key) {
     // Binary search function. arr is the array, key is the value to search for, a and b are the boundaries of arr to be searched within.
     // You must use pointer notations. i.e. no "[]"
     // Your code goes here:
+    // Base case: key not found
+  if (a > b) {
+    return -1;
+  }
+
+  // Find the middle index
+  int mid = a + (b - a) / 2;
+
+  // Check if key is present at mid
+  if (*(arr + mid) == key) {
+    return mid;
+  }
+
+  // If key is greater, search in right half
+  if (*(arr + mid) < key) {
+    return bSearch(arr, mid + 1, b, key);
+  }
+
+  // If key is smaller, search in left half
+  return bSearch(arr, a, mid - 1, key);
 
 
 	return 0; // Modify this to return an appropriate value!
