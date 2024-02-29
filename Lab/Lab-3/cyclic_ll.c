@@ -7,6 +7,26 @@ typedef struct node {
 
 int has_cycle(node *head) {
 	// Your code goes here:
+  // Empty list has no cycle
+  if (head == NULL) {
+        return 0;  
+    }
+
+    node *slow = head;
+    node *fast = head->next;
+
+
+    while (fast != NULL && fast->next != NULL) {
+        // Cycle detected
+        if (slow == fast) {
+            return 1;  
+        }
+
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return 0;
 }
 
 void test_has_cycle(void) {
