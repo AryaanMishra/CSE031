@@ -77,3 +77,4 @@ TPS 2:
     3.  The above code demonstrates the basic usage of structures, memory allocation, and printing memory addresses in C. The 'head' pointer contains the address of the dynamically allocated memory for the Node structure. The address of 'head' will be the starting address of this memory block.
         The 'iValue' and 'fValue' are stored at consecutive locations in the allocated memory block.
         The 'next' pointer points to the address where the 'next' Node structure would be stored if a linked list were to be formed.
+
