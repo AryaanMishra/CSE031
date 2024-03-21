@@ -1,0 +1,18 @@
+Group Memebers: Aryaan Mishra
+
+TPS 1:
+1. MARS stands for MIPS Assemble and Runtime Simulator.
+5. Part 1: Basic MARS Use (with Fibonacci.asm) a. To load an assembly file, go to File > Open... and select the file. 	b. To assemble/compile the program, go to Run > Assemble or press the toolbar Assemble icon. c. To run the 	assembled program, go to Run > Go or press the toolbar Go icon. d. No, you cannot run a program before 	assembling/compiling it first. e. To run line-by-line, go to Run > Step or press the toolbar Step icon. f. To 	run again after finishing, go to Run > Reset and then Run > Go.
+TPS 2: 
+
+1. The .data, .word, and .text directives are used to define different sections in a MIPS assembly program:
+.data: This section is used to declare and initialize static data variables, such as integers, strings, or arrays.
+.word: This directive is used within the .data section to define a 32-bit (4-byte) word of memory and initialize it with a value.
+.text: This section contains the actual program instructions, or code, that will be executed.
+2. Line 10 (lw $t0, num) loads the word (4-byte value) stored at the memory address labeled num into register $t0.
+3. Line 15 (add $s1, $t0, $t1) adds the values in registers $t0 and $t1, and stores the result in register $s1.
+4. To set a breakpoint in MARS at line 15: a. Open the file in MARS b. Assemble the program (Run > Assemble) c. In the text editor, click on the left margin next to line 15 - this will set a breakpoint, indicated by a red circle.
+5. After the program stops at a breakpoint: a. To continue execution, use Run > Continue (or the Continue icon in the toolbar). b. To step through the code line-by-line, use Run > Step (or the Step icon).
+6. To find the content of a register: a. In MARS, the register values are displayed in the "Registers" pane on the right side. b. To modify a register value manually while running, simply click on the register value in that pane and enter the new value.
+7. 
+8. The syscall instruction is used to make a system call, which allows a program to perform various operations such as printing values, reading input, or exiting the program. a. Before using syscall, the service number (operation to be performed) is loaded into register $v0. b. Any arguments required for that service are loaded into the appropriate registers ($a0, $a1, etc.). c. When syscall is executed, the operating system handles the requested service based on the value in $v0.
