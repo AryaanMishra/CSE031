@@ -1,0 +1,27 @@
+TPS Activity 1:
+    1.  The starting addresses of the Text Segment and Data Segment are as follows: Text Segment: 0x00400000 Data Segment: 0x10010000
+    2.  The True Assembly Language (Basic) is the direct representation of the machine code in a more human-readable format. Each line of the Basic code corresponds to a specific machine instruction or data value stored in memory. The MIPS Assembly Language (Source) is a higher-level representation of the code, using symbolic instructions and labels that are more readable for programmers. The assembler translates the MIPS Assembly Language into the corresponding machine code (True Assembly Language) during the assembly process.
+    3.  The difference between two consecutive address locations in the Data Segment is 4 bytes.
+    4.  At each address location in the Data Segment, there are 4 columns.
+    5.  The relationship between the address difference and the number of columns at each address location is that the address difference of 4 bytes aligns with the 4 columns displayed for each address location. Each column represents one byte (8 bits) of data, and since the data type used in the provided code is .word (32-bit or 4-byte words), the address difference of 4 bytes is necessary to accommodate the entire word at each address location.
+    6.  m: .word 20
+    7.  After assembling the code, the value of m is stored at the address 0x10010004.
+    8.  str1: .asciiz "I love CSE31!"
+    9.  0x10010008
+        0x10010009
+        0x1001000a
+    10. When the ASCII box is checked, the characters of the string str1 are displayed as their corresponding ASCII values in hexadecimal format. This agrees with the concept from Lab 04 that an array of characters (a string) is stored as a sequence of numerical values representing the ASCII codes of the characters.
+    11. la $a0, str1    # Load the address of str1 into $a0 (argument register)
+        li $v0, 4       # Service number 4 for printing a string
+        syscall         # Call the system service to print the string
+    12. The instruction la $t3, n stands for "load address." It loads the address of the label n into the register $t3. After executing this instruction, the value stored in $t3 will be the memory address where the value of n is stored, which is 0x10010000 in this case.
+
+TPS Activity 2:
+    1.  In MIPS architecture, the decision was made to have fewer instructions for simplicity and efficiency. Having a single instruction (slt) to perform all inequality comparisons, and using conditional branching (beq, bne) to implement the desired logic, simplifies the instruction set and the hardware design. This approach trades off some ease of programming for improved performance and reduced complexity in the processor implementation.
+    2.  n: .word 25
+    3.  str1: .asciiz "Less than\n"
+        str2: .asciiz "Less than or equal to\n"
+        str3: .asciiz "Greater than\n"
+        str4: .asciiz "Greater than or equal to\n"
+    4.  To read an integer from the user, we can use the syscall service number 5 (li $v0, 5 and syscall). The user input will be stored in register $v0.
+    
