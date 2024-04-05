@@ -1,0 +1,49 @@
+TPS-1:
+
+    1.  Procedure: A named group of program statements designed to perform a specific task. Procedures are commonly used in procedural programming languages.
+        Function: A piece of code that takes input values, performs a specific operation on those values, and returns a result. Functions are used in various programming paradigms, including procedural, functional, and object-oriented programming.
+        Method: A function that is associated with a particular class or object in object-oriented programming. Methods define the behavior and operations that can be performed on objects of that class.
+
+    2.  When a program is compiled, the resulting machine code is stored in the static/code segment of memory.
+        During execution, the CPU fetches instructions from memory (the code segment) and executes them sequentially, unless there is a control transfer statement (branch, jump, etc.).
+        The program counter (PC) keeps track of the next instruction to be executed.
+        In the absence of control transfer statements, the CPU simply increments the PC and executes the next instruction in sequence.
+    
+    4.  The SUM label is located at line 17 in the provided code. The instruction at this line (add $v0, $a0, $a1) adds the values stored in $a0 and $a1 and stores the result in $v0.
+
+    5.  No, we cannot use j instead of jr $ra to return from the SUM function. The j instruction is an unconditional jump that transfers control to a specific address without considering the return address. The jr $ra instruction, on the other hand, jumps to the address stored in the $ra register, which should contain the return address (the address of the instruction following the function call).
+
+    6.  In the provided code, the return address is supposed to be saved before the SUM function is called. The line addi $ra, $zero, 0 is where the return address is being saved, but it is being incorrectly set to 0. The return address should be the address of the instruction following the function call (j SUM). The return address is saved in the $ra register. The value being saved (0) does not make sense as it is an invalid address.
+
+    7.  When you try to run the program, you will encounter an error because the return address is set to an invalid value (0). This means that when the jr $ra instruction is executed after the SUM function, the CPU will try to fetch the next instruction from address 0, which is likely an invalid memory location.
+
+    8.  From the Text Segment window in MARS, the address of the statement that the program should return to from SUM is 0x00400020.
+
+    9.  After modifying the code to save the correct return address (addi $ra, $zero, 0x00400020), assemble it, and check the Text Segment again. The return address should now be correctly set to 0x00400020. However, you will notice that the value has changed back to 0. This is because MARS automatically updates the $ra register with the correct return address when you use the jal instruction (which we haven't used yet). This behavior will be explained in later lectures.
+
+    10. The new (correct) return address is 0x00400020. After modifying the code with this return address, assemble, and run the program. The output of the program should be 15.
+
+    11. Instead of using j to call a procedure, we should use the jal (Jump and Link) instruction. The jal instruction jumps to the specified address and automatically saves the return address in the $ra register, eliminating the need to manually save the return address before each procedure call.
+
+
+TPS-2:
+
+    1.  38
+
+    2.  The MAIN function in proc2.s does the following:
+        Loads the value of x (5) into $s0.
+        Loads the value of y (10) into $s1.
+        Prepares to call SUM by moving the value of x (5) into $a0.
+        Calls the SUM function.
+        Adds x and y ($s0 and $s1), and then adds the return value from SUM ($v0) to the sum.
+        Stores the final result in $s1 (y).
+        Prints the value of $s1 (y).
+        Jumps to the END label.
+    
+    3.  When MAIN calls SUM, the jal instruction automatically saves the return address (the address of the instruction following the jal instruction) in the $ra register. This is how SUM knows where to return to after its execution. After SUM calls SUB, the return address to MAIN is overwritten by the return address to SUM. This is a problem because when SUB returns, it will return to SUM, but when SUM returns, it will not return to the correct address in MAIN. To resolve this problem, we need to save the return address to MAIN before calling SUM, and restore it before returning from SUM.
+
+    4.  The input argument n in the SUM function is used for two purposes: as an argument for the sub function call, and as an operand for the addition with the return value from sub. According to the register convention, the first argument of all function calls must be stored in $a0. However, in the provided code, the value of $a0 is modified before calling SUB, which violates the convention. To resolve this problem, we need to save the original value of $a0 (the input argument n) in a temporary register before calling SUB, and then restore it after the call to SUB. This way, the original value of n is preserved and can be used for the addition with the return value from sub.
+
+    5. At line 24 (lw $s0, 0($t0)), the value of $s0 from MAIN is overwritten with the value of m (15). This is a problem because $s0 is supposed to hold the value of x from MAIN, which is needed for the subsequent calculations. To fix this problem, we need to save the original value of $s0 from MAIN before modifying it in SUM, and then restore it before returning from SUM.
+
+    6.  
