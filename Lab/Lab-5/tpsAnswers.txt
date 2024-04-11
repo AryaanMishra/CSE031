@@ -14,5 +14,5 @@ TPS 2:
 4. To set a breakpoint in MARS at line 15: a. Open the file in MARS b. Assemble the program (Run > Assemble) c. In the text editor, click on the left margin next to line 15 - this will set a breakpoint, indicated by a red circle.
 5. After the program stops at a breakpoint: a. To continue execution, use Run > Continue (or the Continue icon in the toolbar). b. To step through the code line-by-line, use Run > Step (or the Step icon).
 6. To find the content of a register: a. In MARS, the register values are displayed in the "Registers" pane on the right side. b. To modify a register value manually while running, simply click on the register value in that pane and enter the new value.
-7. 
+7. n is already set to 123th, so it is already calculating the 13th fib num.
 8. The syscall instruction is used to make a system call, which allows a program to perform various operations such as printing values, reading input, or exiting the program. a. Before using syscall, the service number (operation to be performed) is loaded into register $v0. b. Any arguments required for that service are loaded into the appropriate registers ($a0, $a1, etc.). c. When syscall is executed, the operating system handles the requested service based on the value in $v0.
