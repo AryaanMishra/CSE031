@@ -1,0 +1,11 @@
+TPS 1:
+1.  The provided fib.s program calculates the 13th Fibonacci number using a recursive approach.
+2.  
+
+TPS 2:
+5.  The returned value from the recursion function is expected to be in $v0. To print the returned value, we need to move it to $a0 first, as the print_int syscall expects the value to be printed in $a0.
+7.  The stack pointer was moved to create storage for three integer values (12 bytes). The first thing to be stored in this stack frame is the return address ($ra). 
+8.  Under the label recursion, when $t0 (which is $a0 + 1) is equal to 0, the base case is reached, and the program should return the value of $a0.
+10. When the input argument is not 0 or -1, the program will call recursion twice. We need to save $a0 into the stack because its value will be changed during the recursive calls, and we need to preserve the original value to use it in the second recursive call.
+11. addi $a0, $a0, -2 # update $a0 to m - 2
+12. After returning from the first recursive call, the returned value is stored in $v0. If we call recursion again immediately, this value will be overwritten.
