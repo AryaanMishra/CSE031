@@ -1,0 +1,43 @@
+TPS-1:
+    4.  Machine instructions in MIPS contain 32 bits.
+    5.  There are 3 main instruction formats in MIPS: R-type (Register), I-type (Immediate), and J-type (Jump).
+    6.  A.  he instruction on line 7 (slt $t0, $s1, $s0) is an R-type instruction. It has 6 fields: opcode (6 bits), rs (5 bits), rt (5 bits), rd (5 bits), shamt (5 bits), funct (6 bits).
+        B.  Opcode (6 bits) = 0x00
+            rs = $s1 = 0x11
+            rt = $s0 = 0x10
+            rd = $t0 = 0x08
+            shamt = 0x00
+            funct = 0x2a (opcode for slt)
+        C.  Binary: 0000000001000101000010000100000000101010
+            Hex: 0x01288a2a
+    7.  A.  Machine code at 0x00400010 is 0x00098a2a
+        B.  This is an R-type instruction (opcode 0x00). R-type has 6 fields: opcode, rs, rt, rd, shamt, funct.
+        C.  Opcode = 0x00
+            rs = 0x09
+            rt = 0x08
+            rd = 0x0a
+            shamt = 0x00
+            funct = 0x2a
+        D.  This is the slt instruction. rs = $t1, rt = $t0, rd = $t2
+        E.  The instruction is: slt $t2, $t1, $t0
+    8.  A.  The instruction on line 17 (bne $t0, $zero, LESS) is an I-type instruction.
+        B.  Opcode = 0x05 (opcode for bne)
+            rs = $t0 = 0x08
+        C.  The target label is LESS. Its address is 0x00400020.
+        D.  No, we cannot put the full address in the immediate field as it is only 16 bits wide.
+        E.  We calculate the offset by: (Target Address - PC + 4) / 4
+            offset = (0x00400020 - 0x00400014 + 4) / 4 = 4
+            So immediate = 0x0004
+        F.  Binary: 0000010000001000000000000000 0100
+            Hex: 0x15080004
+    9.  A.  The j instruction is a J-type instruction with only 2 fields - opcode (6 bits) and address (26 bits)
+        B.  Opcode for j is 0x02
+        C.  The label is END and its address is 0x00400030
+        D.  The address field is 26 bits wide. The full 32-bit address is shifted 2 bits to the right (divided by 4) and the lower 28 bits are taken.
+            Value in address field = 0x00400030 >> 2 = 0x01000018
+        E.  Binary: 000010 00000000000000000001000000011000
+            Hex: 0x08000018
+
+Individual Assignment 1:
+    
+

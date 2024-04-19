@@ -1,0 +1,57 @@
+Line #7: slt $t0, $s0, $s1
+
+    a.  Instruction type: R-type
+        Fields: opcode (6 bits), rs (5 bits), rt (5 bits), rd (5 bits), shamt (5 bits), funct (6 bits)
+
+    b.  Opcode (slt) = 0x00
+        rs = $s0 = 0x10
+        rt = $s1 = 0x11
+        rd = $t0 = 0x08
+        shamt = 0x00
+        funct (slt) = 0x2a
+
+    c.  Machine code:
+        Binary: 0000000010000101000010000100000000101010
+        Hex: 0x012a8820
+
+Line #14: beq $t0, $zero, LEEQ
+
+    a.  Instruction type: I-type
+        Fields: opcode (6 bits), rs (5 bits), rt (5 bits), immediate (16 bits)
+
+    b.  Opcode (beq) = 0x04
+        rs = $t0 = 0x08
+        rt = $zero = 0x00
+        Offset = (LEEQ address - PC + 4) / 4
+        = (0x00400028 - 0x00400018 + 4) / 4 = 4
+        Immediate = 0x0004
+
+    c.  Machine code:
+        Binary: 0000010000001000000000000000 0100
+        Hex: 0x10080004
+
+Line #17: j GRT
+
+    a.  Instruction type: J-type
+        Fields: opcode (6 bits), address (26 bits)
+
+    b.  Opcode (j) = 0x02
+        Target address of GRT is 0x00400020
+        Address field = (GRT address >> 2) = 0x00400020 >> 2 = 0x00100008
+
+    c.  Machine code:
+        Binary: 000010000000000000000001000000001000
+        Hex: 0x08000008
+
+Line #20: j END
+
+    a.  Instruction type: J-type
+        Fields: opcode (6 bits), address (26 bits)
+
+    b.  Opcode (j) = 0x02
+        Target address of END is 0x00400038
+        Address field = (END address >> 2) = 0x00400038 >> 2 = 0x0010000e
+
+    c.  Machine code:
+        Binary: 000010000000000000000001000000001110
+        Hex: 0x0800000e

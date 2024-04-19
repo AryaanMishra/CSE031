@@ -1,96 +1,66 @@
-	.data
-x:	.word 2
-y:	.word 3
-z:	.word 4
-p:	.word 0
-q:	.word 0
+.data
+str1:   .asciiz "p + q: %d\n"
+str2:   .asciiz "%d\n"
 
-	.text
-MAIN:
-	la $t0, x		#Reads x value for creating a register
-	lw $s0, 0($t0)		#Stores x value
-	la $t0, y		#Reads y value for creating a register
-	lw $s1, 0($t0)		#Stores y value
-	la $t0, z		#Reads z value for creating a register
-	lw $s2, 0($t0)
-	
-	add $a0, $s0, $zero
-	add $a1, $s1, $zero
-	add $a2, $s2, $zero
-	
-	jal FOO
-	
-	add $t1, $s0, $s1	#Adds x and y
-	add $t2, $s2, $v0	#Adds z and foo(x+y+z)
-	add $s2, $t1, $t2	#Adds sum of x and y with sum of z and foo(x+y+z)
-	
-	add $a0, $s2, $zero
-	
-	li $v0, 1 
-	
-	syscall
-	j END
-	
-BAR:
-	sub $t1, $a2, $a0	#Subtracts a from c
-	sllv $v0, $t1, $a1	#Bit shifts by b's value
-	jr $ra
+.text
+.globl main
 
-FOO:
-	addi $sp, $sp, -20	#Backsup
-	sw $ra, 0($sp)
-	sw $a0, 4($sp)
-	sw $a1, 8($sp)
-	sw $a2, 12($sp)
-	sw $s0, 16($sp)
-	
-	add $a0, $s0, $s1	
-	add $a1, $s1, $s2
-	add $a2, $s2, $s0
-	
-	jal BAR			#Calls bar function
-	
-	la $t0, p
-	lw $s0, 0($t0)
-	
-	add $t2, $s0, $v0
-	
-	lw $ra, 0($sp)
-	lw $a0, 4($sp)
-	lw $a1, 8($sp)
-	lw $a2, 12($sp)
-	lw $s0, 16($sp)
-	addi $sp, $sp, 20	#Restore
-	
-	addi $sp, $sp, -20	#Backsup
-	sw $ra, 0($sp)
-	sw $a0, 4($sp)
-	sw $a1, 8($sp)
-	sw $a2, 12($sp)
-	sw $s1, 16($sp)
-	
-	sub $a0, $s0, $s2
-	sub $a1, $s1, $s0
-	mul $a2, $s1, 2
-	
-	jal BAR			#Calls bar function
-	
-	la $t0, q
-	lw $s1, 0($t0)
-	
-	add $t3, $s1, $v0
-	
-	lw $ra, 0($sp)
-	lw $a0, 4($sp)
-	lw $a1, 8($sp)
-	lw $a2, 12($sp)
-	lw $s1, 16($sp)
-	addi $sp, $sp, 20	#Restores
-	
-	add $v0, $t2, $t3
-	
-	jr $ra			#Returns back to main
-	
-END:
-	li $v0, 10
-	syscall
+bar:
+    # a -> $a0, b -> $a1, c -> $a2
+    sub $v0, $a1, $a0  # $v0 = b - a
+    sllv $v0, $v0, $a2 # $v0 = (b - a) << c
+    jr $ra             # Added this line to return to the caller
+
+foo:
+    # m -> $a0, n -> $a1, o -> $a2
+    # p -> $s0, q -> $s1
+    addi $sp, $sp, -12 # allocate space on the stack
+    sw $ra, 8($sp)     # save return address
+    sw $s0, 4($sp)     # save $s0
+    sw $s1, 0($sp)     # save $s1
+
+    add $a0, $a0, $a2  # m + o
+    add $a1, $a1, $a2  # n + o
+    add $a2, $a0, $a1  # m + n + o
+    jal bar             # call bar(m + o, n + o, m + n)
+    move $s0, $v0      # p = bar(m + o, n + o, m + n)
+
+    sub $a0, $a0, $a2  # m - o
+    sub $a1, $a1, $a0  # n - m
+    add $a2, $a1, $a1  # n + n
+    jal bar             # call bar(m - o, n - m, n + n)
+    move $s1, $v0      # q = bar(m - o, n - m, n + n)
+
+    add $a0, $s0, $s1  # p + q
+    li $v0, 4           # print_string syscall code
+    la $a1, str1
+    syscall             # print "p + q: %d\n"
+
+    add $v0, $s0, $s1  # return p + q
+
+    lw $ra, 8($sp)     # restore return address
+    lw $s0, 4($sp)     # restore $s0
+    lw $s1, 0($sp)     # restore $s1
+    addi $sp, $sp, 12  # deallocate stack space
+    jr $ra
+
+main:
+    # x -> $s0, y -> $s1, z -> $s2
+    li $s0, 2  # x = 2
+    li $s1, 4  # y = 4
+    li $s2, 6  # z = 6
+
+    move $a0, $s0  # m = x
+    move $a1, $s1  # n = y
+    move $a2, $s2  # o = z
+    jal foo        # call foo(x, y, z)
+    add $s2, $v0, $s2  # z = foo(x, y, z) + z
+    add $s2, $s2, $s1  # z = z + y
+    add $s2, $s2, $s0  # z = z + x
+
+    move $a0, $s2      # print z
+    li $v0, 1
+    syscall
+
+    li $v0, 10         # exit
+    syscall
